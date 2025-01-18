@@ -1,4 +1,4 @@
-# shiki 插件
+# ✨代码高亮插件
 
 本插件为 Hexo 博客系统提供了一个基于 Shiki 的代码高亮功能，支持多种自定义配置和交互功能，如行号显示、代码折叠、复制代码、全屏查看等。
 
@@ -6,15 +6,50 @@ shiki支持的所有语言查看： [https://shiki.style/languages](https://shik
 
 shiki支持的所有主题查看： [https://shiki.matsu.io/themes#special-themes](https://shiki.matsu.io/themes#special-themes)
 
+# 🌟预览
 
-# Install And Config
+![](./docs/basic_demo.png)
+---
+![](./docs/toggle_linenumber_show.png)
+---
+![](./docs/toggle_code_wrap.png)
+---
+![](./docs/raw_code_viewer.png)
+---
+![](./docs/toggle_expand_code.png)
+---
+![](./docs/toggle_shrink_code.png)
+---
+
+# 🛠️安装
 
 
 安装插件
 ```bash install
 npm install https://github.com/gxt-kt/hexo-plugin-shiki.git --save
 ```
-在_config.yml添加以下内容
+
+# 📦配置
+
+在_config.yml设置以下内容
+
+> [!WARNING]
+> 为了避免与原生代码高亮插件发生冲突，请禁用原生插件。
+>
+> ```yml
+> highlight:
+>   enable: false
+> prismjs:
+>   enable: false
+> ```
+>
+> 对于 `hexo>=7.0.0` 版本，请额外添加一行，将 `syntax_highlighter` 留空，如下所示。
+>
+> ```yml
+> syntax_highlighter:
+> ```
+
+添加以下配置：
 
 ```yaml config in _config.yml
 shiki:
@@ -58,23 +93,9 @@ shiki:
 | **`language_aliases`**            | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | 设置代码语言的别名映射。例如，`cc` 将被映射为 `cpp`。        |
 
 
+---
 
-> [!WARNING]
-> To avoid conflicts with the native code highlight plugin, please disable the native plugins.
->
-> ```yml
-> highlight:
->   enable: false
-> prismjs:
->   enable: false
-> ```
->
-> for `hexo>=7.0.0` versions, please add a additional line, leave `syntax_highlighter` to empty, just like below.
->
-> ```yml
-> syntax_highlighter:
-> ```
 
-# Ref
+# 🚀参考
 - [https://github.com/nova1751/hexo-shiki-plugin](https://github.com/nova1751/hexo-shiki-plugin)
 - [https://github.com/HPCesia/hexo-highlighter-shiki](https://github.com/HPCesia/hexo-highlighter-shiki)
