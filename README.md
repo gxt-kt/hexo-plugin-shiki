@@ -1,3 +1,5 @@
+**[📖CN中文文档](https://github.com/gxt-kt/hexo-plugin-shiki/blob/master/README-CN.md)**
+
 # ✨ Code Highlighting Plugin
 
 This plugin provides a code highlighting feature for the Hexo blogging system based on [Shiki](https://shiki.style/). It supports various custom configurations and interactive features such as line number display, code folding, code copying, full-screen viewing, and more.
