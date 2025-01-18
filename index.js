@@ -48,41 +48,47 @@ const {
 //   hexo.route.set('code_block/code_block.css', 'source/code_block/code_block.css');
 // });
 
+
 const path = require('path');
 const fs = require('fs');
-module.exports = function (hexo) {
-  // 获取插件的根目录
-  const pluginDir = path.dirname(require.resolve('hexo-plugin-shiki'));
-  console.log("pluginDir", pluginDir)
-  // 注册 CSS 文件注入器
-  hexo.extend.injector.register('head_end', () => {
-    // 构建 CSS 文件的路径
-    const cssPath = path.join(pluginDir, 'code_block', 'code_block.css');
-    console.log("cssPath", cssPath)
-    // 确保文件存在
-    if (fs.existsSync(cssPath)) {
-      // return `<link rel="stylesheet" href="${hexo.config.root}plugins/hexo-plugin-shiki/code_block/code_block.css">`;
-      return `<link rel="stylesheet" href="${cssPath}">`;
-    } else {
-      hexo.log.error(`CSS file not found: ${cssPath}`);
-      return '';
-    }
-  });
-  // 注册 JavaScript 文件注入器
-  hexo.extend.injector.register('body_end', () => {
-    // 构建 JavaScript 文件的路径
-    const jsPath = path.join(pluginDir, 'code_block', 'code_block.js');
-    console.log("jsPath", jsPath)
-    // 确保文件存在
-    if (fs.existsSync(jsPath)) {
-      return `<link rel="stylesheet" href="${jsPath}">`;
-      // return `<script src="${hexo.config.root}plugins/hexo-plugin-shiki/code_block/code_block.js"></script>`;
-    } else {
-      hexo.log.error(`JavaScript file not found: ${jsPath}`);
-      return '';
-    }
-  });
-};
+// 获取插件的根目录
+const pluginDir = path.dirname(require.resolve('hexo-plugin-shiki'));
+// 将插件的静态文件复制到 Hexo 的 source 目录
+hexo.on('generateBefore', () => {
+  const sourceDir = hexo.source_dir;
+  const targetDir = path.join(sourceDir, 'code_block');
+  // 确保目标目录存在
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir);
+  }
+  // 复制 CSS 文件
+  const cssSourcePath = path.join(pluginDir, 'code_block', 'code_block.css');
+  const cssTargetPath = path.join(targetDir, 'code_block.css');
+  if (fs.existsSync(cssSourcePath)) {
+    fs.copyFileSync(cssSourcePath, cssTargetPath);
+  } else {
+    hexo.log.error(`CSS file not found: ${cssSourcePath}`);
+  }
+  // 复制 JavaScript 文件
+  const jsSourcePath = path.join(pluginDir, 'code_block', 'code_block.js');
+  const jsTargetPath = path.join(targetDir, 'code_block.js');
+  if (fs.existsSync(jsSourcePath)) {
+    fs.copyFileSync(jsSourcePath, jsTargetPath);
+  } else {
+    hexo.log.error(`JavaScript file not found: ${jsSourcePath}`);
+  }
+});
+// 注册 CSS 文件注入器
+hexo.extend.injector.register('head_end', () => {
+  const cssPath = path.join(hexo.config.root, 'code_block/code_block.css');
+  return `<link rel="stylesheet" href="${cssPath}">`;
+});
+// 注册 JavaScript 文件注入器
+hexo.extend.injector.register('body_end', () => {
+  const jsPath = path.join(hexo.config.root, 'code_block/code_block.js');
+  return `<script src="${jsPath}"></script>`;
+});
+
 if (config.highlight_height_limit) {
   hexo.extend.injector.register("head_end", () => {
     return `
