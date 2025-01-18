@@ -8,6 +8,12 @@ shiki支持的所有主题查看： [https://shiki.matsu.io/themes#special-theme
 
 # 🌟预览
 
+theme: **one-dark-pro**
+![](./docs/one-dark-pro.png)
+---
+theme: **catppuccin-frappe**
+![](./docs/catppuccin-frappe.png)
+---
 ![](./docs/basic_demo.png)
 ---
 ![](./docs/toggle_linenumber_show.png)
