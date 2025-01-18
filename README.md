@@ -1,106 +1,104 @@
-# ✨代码高亮插件
+# ✨ Code Highlighting Plugin
 
-本插件为 Hexo 博客系统提供了一个基于 [Shiki](https://shiki.style/) 的代码高亮功能，支持多种自定义配置和交互功能，如行号显示、代码折叠、复制代码、全屏查看等。
+This plugin provides a code highlighting feature for the Hexo blogging system based on [Shiki](https://shiki.style/). It supports various custom configurations and interactive features such as line number display, code folding, code copying, full-screen viewing, and more.
 
-shiki支持的所有语言查看： [https://shiki.style/languages](https://shiki.style/languages)
+For all languages supported by Shiki, visit: [https://shiki.style/languages](https://shiki.style/languages)
 
-shiki支持的所有主题查看： [https://shiki.matsu.io/themes#special-themes](https://shiki.matsu.io/themes#special-themes)
+For all themes supported by Shiki, visit: [https://shiki.matsu.io/themes#special-themes](https://shiki.matsu.io/themes#special-themes)
 
-# 🌟预览
+# 🌟 Preview
 
-theme: **one-dark-pro**
-![](./docs/one-dark-pro.png)
----
-theme: **catppuccin-frappe**
-![](./docs/catppuccin-frappe.png)
----
-![](./docs/basic_demo.png)
----
-![](./docs/toggle_linenumber_show.png)
----
-![](./docs/toggle_code_wrap.png)
----
-![](./docs/raw_code_viewer.png)
----
-![](./docs/toggle_expand_code.png)
----
-![](./docs/toggle_shrink_code.png)
+**Theme: one-dark-pro**  
+![](./docs/one-dark-pro.png)  
+---  
+**Theme: catppuccin-frappe**  
+![](./docs/catppuccin-frappe.png)  
+---  
+![](./docs/basic_demo.png)  
+---  
+![](./docs/toggle_linenumber_show.png)  
+---  
+![](./docs/toggle_code_wrap.png)  
+---  
 
-# 🛠️安装
+![](./docs/raw_code_viewer.png)  
+---  
+![](./docs/toggle_expand_code.png)  
+---  
+![](./docs/toggle_shrink_code.png)  
 
+# 🛠️ Installation
 
-安装插件
-```bash install
+Install the plugin:
+
+```bash
 npm install https://github.com/gxt-kt/hexo-plugin-shiki.git --save
 ```
 
-# 📦配置
-
-在`_config.yml`设置以下内容
+# 📦 Configuration
+Add the following settings to your _config.yml file:
 
 > [!WARNING]
-> 为了避免与原生代码高亮插件发生冲突，请禁用原生插件。
->
+> To avoid conflicts with the native code highlighting plugin, please disable it.
+> 
 > ```yml
 > highlight:
 >   enable: false
 > prismjs:
 >   enable: false
 > ```
->
-> 对于 `hexo>=7.0.0` 版本，请额外添加一行，将 `syntax_highlighter` 留空，如下所示。
->
+> 
+> For hexo>=7.0.0, add an additional line to leave syntax_highlighter empty, as shown below.
+> 
 > ```yml
 > syntax_highlighter:
 > ```
 
-添加以下配置：
+Add the following configuration:
 
-```yaml config in _config.yml
+```yml
 shiki:
   theme: "one-dark-pro"
-  line_number: true # whether to show the linenumber(if set false you can still toggle linenumber show by highlight_linenumber_toggle)
-  highlight_linenumber_toggle: true # whether to show the linenumber toggle button
-  highlight_wrap_toggle: true # whether to show the wrap code toggle button
-  highlight_lang: true # whether to show the code lang name
+  line_number: true # whether to show the line number (if set to false, you can still toggle line number display using the highlight_linenumber_toggle button)
+  highlight_linenumber_toggle: true # whether to show the line number toggle button
+  highlight_wrap_toggle: true # whether to show the code wrap toggle button
+  highlight_lang: true # whether to show the code language name
   highlight_title: true # whether to show the code block title
-  highlight_copy: true #  whether to show the copy button
-  highlight_raw: true # whether to show the code raw view button
-  highlight_fullpage: true # whether to show the fullpage view button
+  highlight_copy: true # whether to show the copy button
+  highlight_raw: true # whether to show the raw code view button
+  highlight_fullpage: true # whether to show the full-page view button
   is_highlight_shrink: true # true: shrink the code blocks | false: expand the code blocks | null: expand code blocks and hide the button
-  highlight_height_limit: 300 # code-block max height,unit: px
+  highlight_height_limit: 300 # code-block max height, unit: px
   copy: # copy message
     success: "Copy Success"
     error: "Copy Error"
     no_support: "Browser Not Support"
-  language_aliases: # will map the code style to corresponding name
+  language_aliases: # maps the code style to the corresponding name
     cc: "cpp"
     js: "javascript"
     py: "python"
 ```
 
-| 配置项                            | 示例值                                              | 描述                                                         |
-| --------------------------------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| **`theme`**                       | `"one-dark-pro"`                                    | 设置代码高亮的主题。Shiki 支持多种主题，您可以根据需要选择其他主题。 |
-| **`line_number`**                 | `true`                                              | 是否显示行号。如果设置为 `false`，仍然可以通过 `highlight_linenumber_toggle` 按钮切换行号显示。 |
-| **`highlight_linenumber_toggle`** | `true`                                              | 是否显示行号切换按钮。                                       |
-| **`highlight_wrap_toggle`**       | `true`                                              | 是否显示代码换行切换按钮。                                   |
-| **`highlight_lang`**              | `true`                                              | 是否显示代码语言名称。                                       |
-| **`highlight_title`**             | `true`                                              | 是否显示代码块的标题。                                       |
-| **`highlight_copy`**              | `true`                                              | 是否显示复制按钮。                                           |
-| **`highlight_raw`**               | `true`                                              | 是否显示查看原始代码的按钮。                                 |
-| **`highlight_fullpage`**          | `true`                                              | 是否显示全屏查看按钮。                                       |
-| **`is_highlight_shrink`**         | `true`                                              | 控制代码块的默认折叠状态：<br> - `true`: 默认折叠代码块。<br> - `false`: 默认展开代码块。<br> - `null`: 展开代码块并隐藏折叠按钮。 |
-| **`highlight_height_limit`**      | `300`                                               | 代码块的最大高度，单位为像素 (`px`)。超过此高度的代码块将显示展开按钮。 |
-| **`copy.success`**                | `"Copy Success"`                                    | 复制成功时的提示信息。                                       |
-| **`copy.error`**                  | `"Copy Error"`                                      | 复制失败时的提示信息。                                       |
-| **`copy.no_support`**             | `"Browser Not Support"`                             | 浏览器不支持复制时的提示信息。                               |
-| **`language_aliases`**            | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | 设置代码语言的别名映射。例如，`cc` 将被映射为 `cpp`。        |
-
+| Configuration Key               | Example Value                                       | Description                                                                 |
+| ------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------- |
+| **`theme`**                     | `"one-dark-pro"`                                   | Sets the theme for code highlighting. Shiki supports multiple themes.       |
+| **`line_number`**               | `true`                                             | Whether to display line numbers. If set to `false`, you can still toggle line numbers using the `highlight_linenumber_toggle` button. |
+| **`highlight_linenumber_toggle`** | `true`                                             | Whether to show the line number toggle button.                              |
+| **`highlight_wrap_toggle`**     | `true`                                             | Whether to show the code wrap toggle button.                                |
+| **`highlight_lang`**            | `true`                                             | Whether to show the code language name.                                     |
+| **`highlight_title`**           | `true`                                             | Whether to show the code block title.                                       |
+| **`highlight_copy`**            | `true`                                             | Whether to show the copy button.                                            |
+| **`highlight_raw`**             | `true`                                             | Whether to show the raw code view button.                                   |
+| **`highlight_fullpage`**        | `true`                                             | Whether to show the full-page view button.                                  |
+| **`is_highlight_shrink`**       | `true`                                             | Controls the default folding state of code blocks:<br> - `true`: Fold code blocks by default.<br> - `false`: Expand code blocks by default.<br> - `null`: Expand code blocks and hide the fold button. |
+| **`highlight_height_limit`**    | `300`                                              | The maximum height of the code block in pixels (`px`). Code blocks exceeding this height will display an expand button. |
+| **`copy.success`**              | `"Copy Success"`                                   | Message displayed when copying is successful.                               |
+| **`copy.error`**                | `"Copy Error"`                                     | Message displayed when copying fails.                                       |
+| **`copy.no_support`**           | `"Browser Not Support"`                            | Message displayed when the browser does not support copying.                |
+| **`language_aliases`**          | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | Maps code language aliases. For example, `cc` will be mapped to `cpp`.      |
 
 ---
 
-
-# 🚀参考
+# 🚀 References
 - [https://github.com/nova1751/hexo-shiki-plugin](https://github.com/nova1751/hexo-shiki-plugin)
 - [https://github.com/HPCesia/hexo-highlighter-shiki](https://github.com/HPCesia/hexo-highlighter-shiki)
