@@ -1,6 +1,6 @@
 # ✨代码高亮插件
 
-本插件为 Hexo 博客系统提供了一个基于 Shiki 的代码高亮功能，支持多种自定义配置和交互功能，如行号显示、代码折叠、复制代码、全屏查看等。
+本插件为 Hexo 博客系统提供了一个基于 [Shiki](https://shiki.style/) 的代码高亮功能，支持多种自定义配置和交互功能，如行号显示、代码折叠、复制代码、全屏查看等。
 
 shiki支持的所有语言查看： [https://shiki.style/languages](https://shiki.style/languages)
 
@@ -25,7 +25,6 @@ theme: **catppuccin-frappe**
 ![](./docs/toggle_expand_code.png)
 ---
 ![](./docs/toggle_shrink_code.png)
----
 
 # 🛠️安装
 
@@ -37,7 +36,7 @@ npm install https://github.com/gxt-kt/hexo-plugin-shiki.git --save
 
 # 📦配置
 
-在_config.yml设置以下内容
+在`_config.yml`设置以下内容
 
 > [!WARNING]
 > 为了避免与原生代码高亮插件发生冲突，请禁用原生插件。
