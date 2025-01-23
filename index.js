@@ -34,6 +34,7 @@ const {
   highlight_height_limit,
   is_highlight_shrink,
   copy: { success, error, no_support } = {},
+  exclude_languages: []
 } = config;
 
 const path = require('path');
@@ -173,6 +174,14 @@ initializeHighlighter().then((hl) => {
       code = code.replace(match, "");
       const arr = code.split("\n");
       let pre = "";
+
+      // enable exclude_languages
+      if (config.exclude_languages.includes(lang)) {
+        let result = "<div class='codeblock'>";
+        result += `<div class="code"><pre><code class="${lang ? `${lang}` : ""}">${require('hexo-util').escapeHTML(code)}</code></pre></div>`;
+        return `${quote + ul + start}<hexoPostRenderCodeBlock>${result}</hexoPostRenderCodeBlock>${end}`;
+      }
+
       try {
         lang = lang || ""; // 如果没有语言，设置为空字符串
         title = title.trim(); // 去除标题前后的空格

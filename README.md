@@ -79,6 +79,7 @@ shiki:
     cc: "cpp"
     js: "javascript"
     py: "python"
+  exclude_languages: ['mermaid'] # exclude language
 ```
 
 | Configuration Key               | Example Value                                       | Description                                                                 |
@@ -98,6 +99,7 @@ shiki:
 | **`copy.error`**                | `"Copy Error"`                                     | Message displayed when copying fails.                                       |
 | **`copy.no_support`**           | `"Browser Not Support"`                            | Message displayed when the browser does not support copying.                |
 | **`language_aliases`**          | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | Maps code language aliases. For example, `cc` will be mapped to `cpp`.      |
+| **`exclude_languages`**         | `mermaid`  |  Exclude languages. For example, `mermaid` will be not highlight by shiki.      |
 
 ---
 

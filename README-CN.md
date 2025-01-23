@@ -77,6 +77,7 @@ shiki:
     cc: "cpp"
     js: "javascript"
     py: "python"
+  exclude_languages: ['mermaid'] # exclude language
 ```
 
 | 配置项                            | 示例值                                              | 描述                                                         |
@@ -96,6 +97,7 @@ shiki:
 | **`copy.error`**                  | `"Copy Error"`                                      | 复制失败时的提示信息。                                       |
 | **`copy.no_support`**             | `"Browser Not Support"`                             | 浏览器不支持复制时的提示信息。                               |
 | **`language_aliases`**            | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | 设置代码语言的别名映射。例如，`cc` 将被映射为 `cpp`。        |
+| **`exclude_languages`**           | `mermaid`  |  排除指定的语言，例如设置 `mermaid` 不会被高亮。      |
 
 
 ---
