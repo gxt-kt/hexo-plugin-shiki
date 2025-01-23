@@ -36,14 +36,6 @@ const {
   copy: { success, error, no_support } = {},
 } = config;
 
-// 在插件初始化时注册静态资源
-// hexo.extend.filter.register('after_init', function () {
-//   // 将插件的 source 目录注册为静态资源
-//   hexo.route.set('code_block/code_block.js', 'source/code_block/code_block.js');
-//   hexo.route.set('code_block/code_block.css', 'source/code_block/code_block.css');
-// });
-
-
 const path = require('path');
 const fs = require('fs');
 // 获取插件的根目录
@@ -180,7 +172,6 @@ initializeHighlighter().then((hl) => {
       const match = new RegExp(`^${quote.trimEnd()}`, "gm");
       code = code.replace(match, "");
       const arr = code.split("\n");
-      let numbers = "";
       let pre = "";
       try {
         lang = lang || ""; // 如果没有语言，设置为空字符串
