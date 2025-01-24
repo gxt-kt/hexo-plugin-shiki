@@ -212,6 +212,8 @@ figure.shiki div.codeblock div {
 
 figure.shiki .gutter pre {
   border-right: 1px solid var(--hlnumber-color) !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   padding-right: 8px !important;
   padding-left: 8px !important;
   margin-right: 8px !important;
