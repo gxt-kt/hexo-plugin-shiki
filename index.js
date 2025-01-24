@@ -175,6 +175,30 @@ initializeHighlighter().then((hl) => {
       const arr = code.split("\n");
       let pre = "";
 
+      // 计算 argv[0] 也就是第一个```的缩进数
+      const codeBlockIndentMatch = argv[0].match(/^[ \t]+/m);
+      const indentLength = codeBlockIndentMatch ? codeBlockIndentMatch[0].length : 0; // 获取缩进的长度
+      // code = require('hexo-utjl').stripIndent(code); // 使用 stripIndent 去除缩进
+      // console.log("argv",argv[0])
+      // console.log("indentLength",indentLength)
+      // console.log("code before strip",code)
+      // code = require('hexo-util').stripIndent(code, indentLength);
+      // 自定义 stripIndent 逻辑：最多去除 indentLength 的缩进
+      if (indentLength > 0) {
+        const lines = code.split("\n");
+        code = lines
+          .map((line) => {
+            // 匹配每行开头的缩进（空格或制表符）
+            const lineIndentMatch = line.match(/^[ \t]+/);
+            const lineIndentLength = lineIndentMatch ? lineIndentMatch[0].length : 0;
+            // 去除的缩进数取最小值：indentLength 或 lineIndentLength
+            const stripLength = Math.min(indentLength, lineIndentLength);
+            return stripLength > 0 ? line.slice(stripLength) : line;
+          })
+          .join("\n");
+      }
+      // console.log("code after strip",code)
+
       // enable exclude_languages
       if (config.exclude_languages.includes(lang)) {
         let result = "<div class='codeblock'>";
