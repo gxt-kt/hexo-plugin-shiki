@@ -11,6 +11,6 @@
   "description": "",
   "dependencies": {
     "hexo": "^7.3.0",
-    "shiki": "^1.26.2"
+    "shiki": "^1.29.1"
   }
 }
