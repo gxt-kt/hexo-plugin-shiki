@@ -51,13 +51,44 @@ const addHighlightTool = function () {
 
   const copy = async (text, ctx) => {
     try {
-      await navigator.clipboard.writeText(text)
-      alertInfo(ctx, CODE_CONFIG.copy.success)
+      // 尝试使用 navigator.clipboard.writeText
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        console.log('Text copied successfully using Clipboard API:', text);
+        alertInfo(ctx, CODE_CONFIG.copy.success);
+      } else {
+        // 如果不支持 Clipboard API，使用 document.execCommand('copy') 作为回退方案
+        fallbackCopyText(text);
+        console.log('Text copied successfully using execCommand:', text);
+        alertInfo(ctx, CODE_CONFIG.copy.success);
+      }
     } catch (err) {
-      console.error('Failed to copy: ', err)
-      alertInfo(ctx, CODE_CONFIG.copy.error)
+      console.error('Failed to copy:', err);
+      alertInfo(ctx, CODE_CONFIG.copy.error);
     }
-  }
+  };
+
+  // 回退方案：使用 document.execCommand('copy')
+  const fallbackCopyText = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed'; // 避免滚动到底部
+    textarea.style.opacity = '0'; // 隐藏 textarea
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length); // 兼容移动设备
+    try {
+      const successful = document.execCommand('copy');
+      if (!successful) {
+        throw new Error('Failed to copy text using execCommand');
+      }
+    } catch (err) {
+      throw err; // 抛出错误，由上层 catch 处理
+    } finally {
+      // 移除临时的 textarea
+      document.body.removeChild(textarea);
+    }
+  };
 
   // click events
   const highlightCopyFn = (ele, clickEle) => {

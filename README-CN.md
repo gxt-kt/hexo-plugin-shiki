@@ -72,7 +72,6 @@ shiki:
   copy: # copy message
     success: "Copy Success"
     error: "Copy Error"
-    no_support: "Browser Not Support"
   language_aliases: # will map the code style to corresponding name
     cc: "cpp"
     js: "javascript"
@@ -95,7 +94,6 @@ shiki:
 | **`highlight_height_limit`**      | `300`                                               | 代码块的最大高度，单位为像素 (`px`)。超过此高度的代码块将显示展开按钮。 |
 | **`copy.success`**                | `"Copy Success"`                                    | 复制成功时的提示信息。                                       |
 | **`copy.error`**                  | `"Copy Error"`                                      | 复制失败时的提示信息。                                       |
-| **`copy.no_support`**             | `"Browser Not Support"`                             | 浏览器不支持复制时的提示信息。                               |
 | **`language_aliases`**            | `cc: "cpp"`<br>`js: "javascript"`<br>`py: "python"` | 设置代码语言的别名映射。例如，`cc` 将被映射为 `cpp`。        |
 | **`exclude_languages`**           | `mermaid`  |  排除指定的语言，例如设置 `mermaid` 不会被高亮。      |
 

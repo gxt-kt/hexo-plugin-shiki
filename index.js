@@ -33,7 +33,7 @@ const {
   highlight_fullpage,
   highlight_height_limit,
   is_highlight_shrink,
-  copy: { success, error, no_support } = {},
+  copy: { success, error } = {},
   exclude_languages: []
 } = config;
 
@@ -108,7 +108,6 @@ hexo.extend.injector.register("body_end", () => {
     copy: {
       success: '${success}',
       error: '${error}',
-      noSupport: '${no_support}',
     }
   };
   </script>
