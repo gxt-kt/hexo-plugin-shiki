@@ -174,8 +174,17 @@ initializeHighlighter().then((hl) => {
       const arr = code.split("\n");
       let pre = "";
 
-      // 计算 argv[0] 也就是第一个```的缩进数
-      const codeBlockIndentMatch = argv[0].match(/^[ \t]+/m);
+      // 提取第一个 ``` 所在的行，并计算缩进数
+      // 提取第一个非空行
+      const lines = argv[0].split("\n");
+      let firstLine = "";
+      for (let line of lines) {
+        if (line.trim() !== "") {
+          firstLine = line;
+          break;
+        }
+      }
+      const codeBlockIndentMatch = firstLine.match(/^[ \t]*/); // 匹配缩进
       const indentLength = codeBlockIndentMatch ? codeBlockIndentMatch[0].length : 0; // 获取缩进的长度
       // code = require('hexo-utjl').stripIndent(code); // 使用 stripIndent 去除缩进
       // console.log("argv",argv[0])
