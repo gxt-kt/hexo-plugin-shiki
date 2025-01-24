@@ -12,12 +12,10 @@ figure.shiki div.codeblock::-webkit-scrollbar {
 figure.shiki .shiki-tools.closed ~ * {
   display: none;
 }
-figure.shiki div.codeblock {
-  margin: 0;
-}
+
 figure.shiki {
   margin: 0 0 24px;
-  border-radius: 0px;
+  border-radius: 0 !important;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   position: relative;
@@ -96,7 +94,7 @@ figure.shiki {
   transform: rotate(90deg); /* 初始旋转 */
 }
 .shiki-tools .expand.closed:hover {
-  transform: rotate(90deg) scale(1.2); /* hover 时旋转 + 放大 */
+  transform: rotate(90deg); /* hover 时旋转 + 放大 */
 }
 
 /* hover 效果 */
@@ -107,7 +105,7 @@ figure.shiki {
 .shiki-tools .fa-arrow-down-wide-short:hover,
 .shiki-tools .expand:hover {
   color: #49b1f5;
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 
 .shiki-tools .copy-notice {
@@ -153,6 +151,7 @@ figure.shiki {
   font-weight: 500;
   font-size: 0.9em;
   user-select: none;
+  /* user-select: text; */
 }
 
 figure.shiki:hover .shiki-tools .code-lang {
@@ -199,10 +198,12 @@ figure.shiki:hover .shiki-tools .code-lang {
 
 /* codeblock */
 figure.shiki div.codeblock {
+  margin: 0;
   display: block;
   overflow: auto;
   border: none;
   display: flex;
+  border-radius: 0 !important;
 }
 
 figure.shiki div.codeblock div {
@@ -212,8 +213,7 @@ figure.shiki div.codeblock div {
 
 figure.shiki .gutter pre {
   border-right: 1px solid var(--hlnumber-color) !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+  border-radius: 0 !important;
   padding-right: 8px !important;
   padding-left: 8px !important;
   margin-right: 8px !important;
@@ -228,6 +228,7 @@ figure.shiki pre {
   padding: 0px 0 !important;
 
   border: none !important;
+  border-radius: 0 !important;
 }
 
 figure.shiki pre code {
