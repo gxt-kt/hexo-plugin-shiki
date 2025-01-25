@@ -433,3 +433,6 @@ const addHighlightTool = function () {
 
 document.addEventListener("pjax:success", addHighlightTool);
 document.addEventListener("DOMContentLoaded", addHighlightTool);
+
+// fix encrypt show code block
+window.addEventListener("hexo-blog-decrypt", addHighlightTool);
